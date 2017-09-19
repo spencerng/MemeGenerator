@@ -3,8 +3,6 @@
 #include <string.h>  
 #include <tchar.h>  
 
-// Global variables  
-
 // The main window class name.  
 static TCHAR szWindowClass[] = _T("memegenerator");
 
