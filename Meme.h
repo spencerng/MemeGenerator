@@ -42,7 +42,7 @@ namespace MemeGenerator {
 
 
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Button^  generateMemeButton;
+
 	private: System::Windows::Forms::Button^  saveImageButton;
 
 
@@ -93,7 +93,6 @@ namespace MemeGenerator {
 			this->topCaptionTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->bottomCaptionTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->generateMemeButton = (gcnew System::Windows::Forms::Button());
 			this->saveImageButton = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
@@ -169,6 +168,7 @@ namespace MemeGenerator {
 			this->topCaptionTextBox->Name = L"topCaptionTextBox";
 			this->topCaptionTextBox->Size = System::Drawing::Size(344, 26);
 			this->topCaptionTextBox->TabIndex = 6;
+			this->topCaptionTextBox->TextChanged += gcnew System::EventHandler(this, &MainWindow::captionTextChanged);
 			// 
 			// bottomCaptionTextBox
 			// 
@@ -180,6 +180,7 @@ namespace MemeGenerator {
 			this->bottomCaptionTextBox->Name = L"bottomCaptionTextBox";
 			this->bottomCaptionTextBox->Size = System::Drawing::Size(344, 26);
 			this->bottomCaptionTextBox->TabIndex = 8;
+			this->bottomCaptionTextBox->TextChanged += gcnew System::EventHandler(this, &MainWindow::captionTextChanged);
 			// 
 			// label1
 			// 
@@ -193,20 +194,9 @@ namespace MemeGenerator {
 			this->label1->Text = L"Bottom Caption";
 			this->label1->Click += gcnew System::EventHandler(this, &MainWindow::label1_Click_1);
 			// 
-			// generateMemeButton
-			// 
-			this->generateMemeButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->generateMemeButton->Location = System::Drawing::Point(815, 395);
-			this->generateMemeButton->Name = L"generateMemeButton";
-			this->generateMemeButton->Size = System::Drawing::Size(160, 43);
-			this->generateMemeButton->TabIndex = 9;
-			this->generateMemeButton->Text = L"Generate Meme";
-			this->generateMemeButton->UseVisualStyleBackColor = true;
-			this->generateMemeButton->Click += gcnew System::EventHandler(this, &MainWindow::generateMemeButton_Click);
-			// 
 			// saveImageButton
 			// 
+			this->saveImageButton->Enabled = false;
 			this->saveImageButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->saveImageButton->Location = System::Drawing::Point(729, 461);
@@ -307,7 +297,6 @@ namespace MemeGenerator {
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->saveImageButton);
-			this->Controls->Add(this->generateMemeButton);
 			this->Controls->Add(this->bottomCaptionTextBox);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->topCaptionTextBox);
@@ -363,34 +352,14 @@ private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  
 						 pictureDisplay->ImageLocation = openFileDialog->FileName;
 						 topCaptionTextBox->Enabled = true;
 						 bottomCaptionTextBox->Enabled = true;
+						 pictureDisplay->BorderStyle = BorderStyle::None;
+						 saveImageButton->Enabled = true;
 
 					}
 				}
 				catch (Exception^ e) {
 				 MessageBox::Show(e->ToString(), "Unknown Exception");
 				}
-	}
-	private: System::Void generateMemeButton_Click(System::Object^  sender, System::EventArgs^  e) {
-				 if (sourceFileLabel->Text != ""){
-					 Image^ bmp  = Image::FromStream(openFileDialog->OpenFile());
-					 Graphics^ gr = Graphics::FromImage(bmp);
-					 
-					 System::Drawing::Font^ font = gcnew System::Drawing::Font("Impact", bmp->Height * 0.05+20);
-					 
-					 StringFormat^ strFormat = gcnew StringFormat();
-					 strFormat->Alignment = StringAlignment::Center;
-					 float  in = 32;
-					 PointF point;
-					 point.X = bmp->Width / 2.0;
-					 point.Y = 4;
-					 Brush^ brush = Brushes::White;
-					 gr->DrawString(topCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
-					 point.Y = 3.2*bmp->Height / 4.0;
-					 gr->DrawString(bottomCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
-					 pictureDisplay->Image = bmp;
-					 
-				 }
-		
 	}
 
 	private: System::Void saveImageButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -411,6 +380,26 @@ private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  
 	private: System::Void chooseFontButton_Click(System::Object^  sender, System::EventArgs^  e) {
 				 fontDialog1->ShowDialog();
 	
+	}
+
+	private: System::Void captionTextChanged(System::Object^  sender, System::EventArgs^  e) {
+				 
+				 Image^ bmp = Image::FromStream(openFileDialog->OpenFile());
+				 Graphics^ gr = Graphics::FromImage(bmp);
+
+				 System::Drawing::Font^ font = gcnew System::Drawing::Font("Impact", bmp->Height * 0.05 + 20); //font size
+
+				 StringFormat^ strFormat = gcnew StringFormat();
+				 strFormat->Alignment = StringAlignment::Center;
+				 float  in = 32;
+				 PointF point;
+				 point.X = bmp->Width / 2.0;
+				 point.Y = 4;
+				 Brush^ brush = Brushes::White;
+				 gr->DrawString(topCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
+				 point.Y = 3.2*bmp->Height / 4.0; //bottom starting position
+				 gr->DrawString(bottomCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
+				 pictureDisplay->Image = bmp;
 	}
 
 };
