@@ -81,16 +81,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Meme.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Meme.h">
+    <ClInclude Include="MainWindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Meme.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Meme.resx">
-      <DependentUpon>Meme.h</DependentUpon>
+    <Image Include="peepe_Ven_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
