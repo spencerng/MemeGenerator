@@ -6,7 +6,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine,
 }
 
 System::Void MainWindow::Meme_Load(System::Object^ obj, System::EventArgs^ args){
-
+	currentMeme = gcnew Meme();
 }
 
 MainWindow::MainWindow(void) {
@@ -21,6 +21,9 @@ MainWindow::~MainWindow(){
 
 System::Void MainWindow::captionTextChanged(System::Object^  sender, System::EventArgs^  e) {
 
+	currentMeme->topCaption = topCaptionTextBox->Text->ToString();
+	currentMeme->bottomCaption = bottomCaptionTextBox->Text->ToString();
+
 	Image^ bmp = Image::FromStream(openFileDialog->OpenFile());
 	Graphics^ gr = Graphics::FromImage(bmp);
 
@@ -33,9 +36,10 @@ System::Void MainWindow::captionTextChanged(System::Object^  sender, System::Eve
 	point.X = bmp->Width / 2.0;
 	point.Y = 4;
 	Brush^ brush = Brushes::White;
-	gr->DrawString(topCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
+	gr->DrawString(currentMeme->topCaption, font, brush, point, strFormat);
 	point.Y = 0.7 * bmp->Height + 20; //bottom starting position
-	gr->DrawString(bottomCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
+
+	gr->DrawString(currentMeme->bottomCaption, font, brush, point, strFormat);
 	pictureDisplay->Image = bmp;
 }
 
@@ -51,6 +55,7 @@ System::Void MainWindow::sourceFileChooseButton_Click(System::Object^  sender, S
 			pictureDisplay->BorderStyle = BorderStyle::None;
 			saveImageButton->Enabled = true;
 			captionTextChanged(sender, e);
+
 
 		}
 	}

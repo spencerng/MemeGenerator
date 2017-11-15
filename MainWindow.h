@@ -35,6 +35,7 @@ private:
 	System::Windows::Forms::TextBox^  bottomCaptionTextBox;
 	System::Windows::Forms::FontDialog^  fontDialog1;
 	System::Windows::Forms::Button^  chooseFontButton;
+	Meme^ currentMeme;
 	
 
 	System::Void captionTextChanged(System::Object^  sender, System::EventArgs^  e);
