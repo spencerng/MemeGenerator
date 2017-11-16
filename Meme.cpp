@@ -7,7 +7,7 @@ System::Void Meme::generateMeme(){
 	
 	Graphics^ gr = Graphics::FromImage(meme);
 
-	System::Drawing::Font^ font = gcnew System::Drawing::Font("Impact", 36); //font size
+	System::Drawing::Font^ font = gcnew System::Drawing::Font("Impact", meme->Height*0.15); //font size
 
 	StringFormat^ strFormat = gcnew StringFormat();
 	strFormat->Alignment = StringAlignment::Center;
@@ -17,9 +17,7 @@ System::Void Meme::generateMeme(){
 	Brush^ brush = Brushes::White;
 
 	gr->DrawString(topCaption, font, brush, point, strFormat);
-	point.Y = 0.85 * meme->Height; //bottom starting position
+	point.Y = 0.75 * meme->Height; //bottom starting position
 	gr->DrawString(bottomCaption, font, brush, point, strFormat);
-
-	
-	
 }
+

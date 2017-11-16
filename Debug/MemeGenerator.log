@@ -1,2 +1,9 @@
-﻿  MainWindow.cpp
-  MemeGenerator.vcxproj -> C:\Users\sng\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe
+﻿Build started 11/16/2017 1:45:14 PM.
+     1>Project "C:\Users\Adrian\Documents\GitHub\MemeGenerator\MemeGenerator.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         MemeGenerator.vcxproj -> C:\Users\Adrian\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe
+     1>Done Building Project "C:\Users\Adrian\Documents\GitHub\MemeGenerator\MemeGenerator.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.07
