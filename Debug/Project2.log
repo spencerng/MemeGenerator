@@ -1,7 +1,0 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Meme Generater GUI.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Meme.cpp
-c:\users\sng\documents\github\memegenerator\Meme.h(378): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-c:\users\sng\documents\github\memegenerator\Meme.h(384): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-c:\users\sng\documents\github\memegenerator\Meme.h(388): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
-  Project2.vcxproj -> C:\Users\sng\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe

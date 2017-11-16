@@ -36,6 +36,7 @@ private:
 	System::Windows::Forms::FontDialog^  fontDialog1;
 	System::Windows::Forms::Button^  chooseFontButton;
 	Meme^ currentMeme;
+	System::Void displayMeme();
 	
 
 	System::Void captionTextChanged(System::Object^  sender, System::EventArgs^  e);

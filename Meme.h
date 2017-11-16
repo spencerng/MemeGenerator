@@ -6,18 +6,13 @@ public:
 	System::String^ topCaption;
 	System::String^ bottomCaption;
 	System::String^ sourceImagePath;
-	//System::Drawing::Graphics generateMeme();
+
+
+	System::Drawing::Image^ sourceImage;
+	System::Drawing::Image^ meme;
+
+	System::Void generateMeme();
 public:
-	Meme();
-	~Meme();
 	
 
 };
-
-Meme::Meme()
-{
-}
-
-Meme::~Meme()
-{
-}
