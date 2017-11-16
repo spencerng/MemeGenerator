@@ -27,7 +27,7 @@ System::Void MainWindow::captionTextChanged(System::Object^  sender, System::Eve
 	Image^ bmp = Image::FromStream(openFileDialog->OpenFile());
 	Graphics^ gr = Graphics::FromImage(bmp);
 
-	System::Drawing::Font^ font = gcnew System::Drawing::Font("Impact", bmp->Height * 0.07); //font size
+	System::Drawing::Font^ font = gcnew System::Drawing::Font("Impact", bmp->Height * 4.8 / 72); //font size
 
 	StringFormat^ strFormat = gcnew StringFormat();
 	strFormat->Alignment = StringAlignment::Center;
@@ -36,10 +36,16 @@ System::Void MainWindow::captionTextChanged(System::Object^  sender, System::Eve
 	point.X = bmp->Width / 2.0;
 	point.Y = 4;
 	Brush^ brush = Brushes::White;
+<<<<<<< HEAD
 	gr->DrawString(currentMeme->topCaption, font, brush, point, strFormat);
 	point.Y = 0.7 * bmp->Height + 20; //bottom starting position
 
 	gr->DrawString(currentMeme->bottomCaption, font, brush, point, strFormat);
+=======
+	gr->DrawString(topCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
+	point.Y = 0.9 * bmp->Height - bmp->Height * 4.8 / 72; //bottom starting position
+	gr->DrawString(bottomCaptionTextBox->Text->ToString(), font, brush, point, strFormat);
+>>>>>>> 57ef42941bc768b545a6d0108eb7784086d5ad4f
 	pictureDisplay->Image = bmp;
 }
 
