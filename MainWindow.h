@@ -133,8 +133,9 @@ private:
 		this->topCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
 		this->topCaptionTextBox->Location = System::Drawing::Point(729, 115);
+		this->topCaptionTextBox->Multiline = true;
 		this->topCaptionTextBox->Name = L"topCaptionTextBox";
-		this->topCaptionTextBox->Size = System::Drawing::Size(344, 26);
+		this->topCaptionTextBox->Size = System::Drawing::Size(375, 69);
 		this->topCaptionTextBox->TabIndex = 6;
 		this->topCaptionTextBox->TextChanged += gcnew System::EventHandler(this, &MainWindow::captionTextChanged);
 		// 
@@ -144,10 +145,12 @@ private:
 		this->bottomCaptionTextBox->Enabled = false;
 		this->bottomCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 			System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-		this->bottomCaptionTextBox->Location = System::Drawing::Point(729, 186);
+		this->bottomCaptionTextBox->Location = System::Drawing::Point(729, 225);
+		this->bottomCaptionTextBox->Multiline = true;
 		this->bottomCaptionTextBox->Name = L"bottomCaptionTextBox";
-		this->bottomCaptionTextBox->Size = System::Drawing::Size(344, 26);
+		this->bottomCaptionTextBox->Size = System::Drawing::Size(375, 69);
 		this->bottomCaptionTextBox->TabIndex = 8;
+		this->bottomCaptionTextBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 		this->bottomCaptionTextBox->TextChanged += gcnew System::EventHandler(this, &MainWindow::captionTextChanged);
 		// 
 		// label1
@@ -155,7 +158,7 @@ private:
 		this->label1->AutoSize = true;
 		this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label1->Location = System::Drawing::Point(725, 163);
+		this->label1->Location = System::Drawing::Point(725, 202);
 		this->label1->Name = L"label1";
 		this->label1->Size = System::Drawing::Size(120, 20);
 		this->label1->TabIndex = 7;
@@ -168,7 +171,7 @@ private:
 			static_cast<System::Byte>(0)));
 		this->saveImageButton->Location = System::Drawing::Point(729, 461);
 		this->saveImageButton->Name = L"saveImageButton";
-		this->saveImageButton->Size = System::Drawing::Size(160, 43);
+		this->saveImageButton->Size = System::Drawing::Size(170, 43);
 		this->saveImageButton->TabIndex = 10;
 		this->saveImageButton->Text = L"Save Image";
 		this->saveImageButton->UseVisualStyleBackColor = true;
@@ -178,9 +181,9 @@ private:
 		// 
 		this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->button3->Location = System::Drawing::Point(909, 461);
+		this->button3->Location = System::Drawing::Point(934, 461);
 		this->button3->Name = L"button3";
-		this->button3->Size = System::Drawing::Size(160, 43);
+		this->button3->Size = System::Drawing::Size(170, 43);
 		this->button3->TabIndex = 11;
 		this->button3->Text = L"Publish to Web";
 		this->button3->UseVisualStyleBackColor = true;
@@ -201,7 +204,7 @@ private:
 		// pictureBox1
 		// 
 		this->pictureBox1->BackColor = System::Drawing::Color::White;
-		this->pictureBox1->Location = System::Drawing::Point(839, 243);
+		this->pictureBox1->Location = System::Drawing::Point(839, 328);
 		this->pictureBox1->Name = L"pictureBox1";
 		this->pictureBox1->Size = System::Drawing::Size(25, 25);
 		this->pictureBox1->TabIndex = 12;
@@ -212,7 +215,7 @@ private:
 		this->label2->AutoSize = true;
 		this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label2->Location = System::Drawing::Point(753, 243);
+		this->label2->Location = System::Drawing::Point(753, 331);
 		this->label2->Name = L"label2";
 		this->label2->Size = System::Drawing::Size(80, 20);
 		this->label2->TabIndex = 13;
@@ -223,7 +226,7 @@ private:
 		this->label3->AutoSize = true;
 		this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label3->Location = System::Drawing::Point(896, 243);
+		this->label3->Location = System::Drawing::Point(912, 331);
 		this->label3->Name = L"label3";
 		this->label3->Size = System::Drawing::Size(97, 20);
 		this->label3->TabIndex = 15;
@@ -232,7 +235,7 @@ private:
 		// pictureBox2
 		// 
 		this->pictureBox2->BackColor = System::Drawing::Color::Black;
-		this->pictureBox2->Location = System::Drawing::Point(1015, 240);
+		this->pictureBox2->Location = System::Drawing::Point(1015, 328);
 		this->pictureBox2->Name = L"pictureBox2";
 		this->pictureBox2->Size = System::Drawing::Size(25, 25);
 		this->pictureBox2->TabIndex = 14;
@@ -242,9 +245,9 @@ private:
 		// 
 		this->chooseFontButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->chooseFontButton->Location = System::Drawing::Point(729, 312);
+		this->chooseFontButton->Location = System::Drawing::Point(729, 384);
 		this->chooseFontButton->Name = L"chooseFontButton";
-		this->chooseFontButton->Size = System::Drawing::Size(160, 43);
+		this->chooseFontButton->Size = System::Drawing::Size(170, 43);
 		this->chooseFontButton->TabIndex = 16;
 		this->chooseFontButton->Text = L"Choose Font";
 		this->chooseFontButton->UseVisualStyleBackColor = true;
@@ -255,7 +258,7 @@ private:
 		this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 		this->AutoSize = true;
-		this->ClientSize = System::Drawing::Size(1085, 529);
+		this->ClientSize = System::Drawing::Size(1116, 529);
 		this->Controls->Add(this->chooseFontButton);
 		this->Controls->Add(this->label3);
 		this->Controls->Add(this->pictureBox2);
