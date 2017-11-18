@@ -7,6 +7,8 @@ public:
 	System::String^ bottomCaption;
 	System::String^ sourceImagePath;
 	System::String^ selectedFont = "Impact";
+	System::Drawing::Color textColor = System::Drawing::Color::FromName("White");
+	System::Drawing::Color strokeColor = System::Drawing::Color::FromName("Black");
 
 
 	System::Drawing::Image^ sourceImage;

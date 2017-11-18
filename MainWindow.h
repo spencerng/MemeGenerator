@@ -24,18 +24,26 @@ private:
 	System::Windows::Forms::TextBox^  topCaptionTextBox;
 	System::Windows::Forms::Label^  label1;
 	System::Windows::Forms::Button^  saveImageButton;
-	System::Windows::Forms::Button^  button3;
+private: System::Windows::Forms::Button^  publishImgurButton;
+
 	System::Windows::Forms::ColorDialog^  colorDialog1;
 	System::Windows::Forms::OpenFileDialog^  openFileDialog;
 	System::Windows::Forms::SaveFileDialog^  saveFileDialog;
-	System::Windows::Forms::PictureBox^  pictureBox1;
+private: System::Windows::Forms::PictureBox^  textColorBox;
+
+
 	System::Windows::Forms::Label^  label2;
 	System::Windows::Forms::Label^  label3;
-	System::Windows::Forms::PictureBox^  pictureBox2;
+private: System::Windows::Forms::PictureBox^  strokeColorBox;
+
+
 	System::Windows::Forms::TextBox^  bottomCaptionTextBox;
 
 
 private: System::Windows::Forms::ComboBox^  chooseFontBox;
+private: System::Windows::Forms::Label^  label4;
+private: System::Windows::Forms::CheckBox^  forceUppercase;
+
 
 		 Meme^ currentMeme;
 	System::Void displayMeme();
@@ -54,6 +62,8 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 
 	System::Void chooseFontBoxChange(System::Object^, System::EventArgs^);
 
+	System::Void forceUppercase_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+
 
 	System::ComponentModel::Container ^components;
 
@@ -71,18 +81,20 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->bottomCaptionTextBox = (gcnew System::Windows::Forms::TextBox());
 		this->label1 = (gcnew System::Windows::Forms::Label());
 		this->saveImageButton = (gcnew System::Windows::Forms::Button());
-		this->button3 = (gcnew System::Windows::Forms::Button());
+		this->publishImgurButton = (gcnew System::Windows::Forms::Button());
 		this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 		this->openFileDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 		this->saveFileDialog = (gcnew System::Windows::Forms::SaveFileDialog());
-		this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+		this->textColorBox = (gcnew System::Windows::Forms::PictureBox());
 		this->label2 = (gcnew System::Windows::Forms::Label());
 		this->label3 = (gcnew System::Windows::Forms::Label());
-		this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
+		this->strokeColorBox = (gcnew System::Windows::Forms::PictureBox());
 		this->chooseFontBox = (gcnew System::Windows::Forms::ComboBox());
+		this->label4 = (gcnew System::Windows::Forms::Label());
+		this->forceUppercase = (gcnew System::Windows::Forms::CheckBox());
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureDisplay))->BeginInit();
-		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
+		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textColorBox))->BeginInit();
+		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->strokeColorBox))->BeginInit();
 		this->SuspendLayout();
 		// 
 		// pictureDisplay
@@ -125,7 +137,7 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->topTextLabel->AutoSize = true;
 		this->topTextLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->topTextLabel->Location = System::Drawing::Point(725, 92);
+		this->topTextLabel->Location = System::Drawing::Point(725, 145);
 		this->topTextLabel->Name = L"topTextLabel";
 		this->topTextLabel->Size = System::Drawing::Size(95, 20);
 		this->topTextLabel->TabIndex = 5;
@@ -138,7 +150,7 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->topCaptionTextBox->Enabled = false;
 		this->topCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->topCaptionTextBox->Location = System::Drawing::Point(729, 115);
+		this->topCaptionTextBox->Location = System::Drawing::Point(729, 168);
 		this->topCaptionTextBox->Multiline = true;
 		this->topCaptionTextBox->Name = L"topCaptionTextBox";
 		this->topCaptionTextBox->Size = System::Drawing::Size(375, 69);
@@ -152,7 +164,7 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->bottomCaptionTextBox->Enabled = false;
 		this->bottomCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 			System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-		this->bottomCaptionTextBox->Location = System::Drawing::Point(729, 225);
+		this->bottomCaptionTextBox->Location = System::Drawing::Point(729, 278);
 		this->bottomCaptionTextBox->Multiline = true;
 		this->bottomCaptionTextBox->Name = L"bottomCaptionTextBox";
 		this->bottomCaptionTextBox->Size = System::Drawing::Size(375, 69);
@@ -164,7 +176,7 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->label1->AutoSize = true;
 		this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label1->Location = System::Drawing::Point(725, 202);
+		this->label1->Location = System::Drawing::Point(725, 255);
 		this->label1->Name = L"label1";
 		this->label1->Size = System::Drawing::Size(120, 20);
 		this->label1->TabIndex = 7;
@@ -184,17 +196,18 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->saveImageButton->UseVisualStyleBackColor = true;
 		this->saveImageButton->Click += gcnew System::EventHandler(this, &MainWindow::saveImageButton_Click);
 		// 
-		// button3
+		// publishImgurButton
 		// 
-		this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-		this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+		this->publishImgurButton->Enabled = false;
+		this->publishImgurButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+		this->publishImgurButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->button3->Location = System::Drawing::Point(934, 461);
-		this->button3->Name = L"button3";
-		this->button3->Size = System::Drawing::Size(170, 43);
-		this->button3->TabIndex = 11;
-		this->button3->Text = L"Publish to Web";
-		this->button3->UseVisualStyleBackColor = true;
+		this->publishImgurButton->Location = System::Drawing::Point(934, 461);
+		this->publishImgurButton->Name = L"publishImgurButton";
+		this->publishImgurButton->Size = System::Drawing::Size(170, 43);
+		this->publishImgurButton->TabIndex = 11;
+		this->publishImgurButton->Text = L"Publish to Imgur";
+		this->publishImgurButton->UseVisualStyleBackColor = true;
 		// 
 		// openFileDialog
 		// 
@@ -209,21 +222,22 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->saveFileDialog->ShowHelp = true;
 		this->saveFileDialog->Title = L"Save meme";
 		// 
-		// pictureBox1
+		// textColorBox
 		// 
-		this->pictureBox1->BackColor = System::Drawing::Color::White;
-		this->pictureBox1->Location = System::Drawing::Point(839, 328);
-		this->pictureBox1->Name = L"pictureBox1";
-		this->pictureBox1->Size = System::Drawing::Size(25, 25);
-		this->pictureBox1->TabIndex = 12;
-		this->pictureBox1->TabStop = false;
+		this->textColorBox->BackColor = System::Drawing::Color::White;
+		this->textColorBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->textColorBox->Location = System::Drawing::Point(843, 401);
+		this->textColorBox->Name = L"textColorBox";
+		this->textColorBox->Size = System::Drawing::Size(25, 25);
+		this->textColorBox->TabIndex = 12;
+		this->textColorBox->TabStop = false;
 		// 
 		// label2
 		// 
 		this->label2->AutoSize = true;
 		this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label2->Location = System::Drawing::Point(753, 331);
+		this->label2->Location = System::Drawing::Point(740, 404);
 		this->label2->Name = L"label2";
 		this->label2->Size = System::Drawing::Size(80, 20);
 		this->label2->TabIndex = 13;
@@ -234,20 +248,21 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->label3->AutoSize = true;
 		this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label3->Location = System::Drawing::Point(912, 331);
+		this->label3->Location = System::Drawing::Point(911, 403);
 		this->label3->Name = L"label3";
 		this->label3->Size = System::Drawing::Size(97, 20);
 		this->label3->TabIndex = 15;
 		this->label3->Text = L"Stroke Color";
 		// 
-		// pictureBox2
+		// strokeColorBox
 		// 
-		this->pictureBox2->BackColor = System::Drawing::Color::Black;
-		this->pictureBox2->Location = System::Drawing::Point(1015, 328);
-		this->pictureBox2->Name = L"pictureBox2";
-		this->pictureBox2->Size = System::Drawing::Size(25, 25);
-		this->pictureBox2->TabIndex = 14;
-		this->pictureBox2->TabStop = false;
+		this->strokeColorBox->BackColor = System::Drawing::Color::Black;
+		this->strokeColorBox->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+		this->strokeColorBox->Location = System::Drawing::Point(1022, 400);
+		this->strokeColorBox->Name = L"strokeColorBox";
+		this->strokeColorBox->Size = System::Drawing::Size(25, 25);
+		this->strokeColorBox->TabIndex = 14;
+		this->strokeColorBox->TabStop = false;
 		// 
 		// chooseFontBox
 		// 
@@ -256,12 +271,40 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->chooseFontBox->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 		this->chooseFontBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 		this->chooseFontBox->FormattingEnabled = true;
-		this->chooseFontBox->Location = System::Drawing::Point(729, 388);
+		this->chooseFontBox->Location = System::Drawing::Point(729, 103);
 		this->chooseFontBox->Name = L"chooseFontBox";
 		this->chooseFontBox->Size = System::Drawing::Size(375, 28);
 		this->chooseFontBox->TabIndex = 17;
 		this->chooseFontBox->SelectedIndexChanged += gcnew System::EventHandler(this, &MainWindow::chooseFontBoxChange);
 		this->chooseFontBox->SelectedValueChanged += gcnew System::EventHandler(this, &MainWindow::chooseFontBoxChange);
+		// 
+		// label4
+		// 
+		this->label4->AutoSize = true;
+		this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(0)));
+		this->label4->Location = System::Drawing::Point(725, 74);
+		this->label4->Name = L"label4";
+		this->label4->Size = System::Drawing::Size(74, 20);
+		this->label4->TabIndex = 18;
+		this->label4->Text = L"Typeface";
+		// 
+		// forceUppercase
+		// 
+		this->forceUppercase->AutoSize = true;
+		this->forceUppercase->Checked = true;
+		this->forceUppercase->CheckState = System::Windows::Forms::CheckState::Checked;
+		this->forceUppercase->Enabled = false;
+		this->forceUppercase->FlatAppearance->BorderSize = 10;
+		this->forceUppercase->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+		this->forceUppercase->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+		this->forceUppercase->Location = System::Drawing::Point(729, 357);
+		this->forceUppercase->Name = L"forceUppercase";
+		this->forceUppercase->Size = System::Drawing::Size(148, 24);
+		this->forceUppercase->TabIndex = 19;
+		this->forceUppercase->Text = L"Force Uppercase";
+		this->forceUppercase->UseVisualStyleBackColor = true;
+		this->forceUppercase->CheckedChanged += gcnew System::EventHandler(this, &MainWindow::forceUppercase_CheckedChanged);
 		// 
 		// MainWindow
 		// 
@@ -269,12 +312,14 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 		this->AutoSize = true;
 		this->ClientSize = System::Drawing::Size(1116, 529);
+		this->Controls->Add(this->forceUppercase);
+		this->Controls->Add(this->label4);
 		this->Controls->Add(this->chooseFontBox);
 		this->Controls->Add(this->label3);
-		this->Controls->Add(this->pictureBox2);
+		this->Controls->Add(this->strokeColorBox);
 		this->Controls->Add(this->label2);
-		this->Controls->Add(this->pictureBox1);
-		this->Controls->Add(this->button3);
+		this->Controls->Add(this->textColorBox);
+		this->Controls->Add(this->publishImgurButton);
 		this->Controls->Add(this->saveImageButton);
 		this->Controls->Add(this->bottomCaptionTextBox);
 		this->Controls->Add(this->label1);
@@ -288,10 +333,10 @@ private: System::Windows::Forms::ComboBox^  chooseFontBox;
 		this->MaximizeBox = false;
 		this->Name = L"MainWindow";
 		this->Text = L"Meme Generator";
-		this->Load += gcnew System::EventHandler(this, &MainWindow::Meme_Load);
+		this->Shown += gcnew System::EventHandler(this, &MainWindow::Meme_Load);
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureDisplay))->EndInit();
-		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textColorBox))->EndInit();
+		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->strokeColorBox))->EndInit();
 		this->ResumeLayout(false);
 		this->PerformLayout();
 

@@ -35,6 +35,8 @@ System::Void MainWindow::Meme_Load(System::Object^ obj, System::EventArgs^ args)
 	//	MessageBox::Show(e->ToString(), "Unknown Exception");
 	}
 
+	sourceFileChooseButton_Click(obj, args);
+
 }
 
 MainWindow::MainWindow(void) {
@@ -66,10 +68,12 @@ System::Void MainWindow::sourceFileChooseButton_Click(System::Object^  sender, S
 			pictureDisplay->BorderStyle = BorderStyle::None;
 			saveImageButton->Enabled = true;
 			chooseFontBox->Enabled = true;
+			forceUppercase->Enabled = true;
 			
 			
 			currentMeme->sourceImagePath = openFileDialog->FileName;
 			currentMeme->sourceImage =  Image::FromFile(currentMeme->sourceImagePath);
+			pictureDisplay->Image = currentMeme->sourceImage;
 			displayMeme();
 		}
 	}
@@ -79,10 +83,9 @@ System::Void MainWindow::sourceFileChooseButton_Click(System::Object^  sender, S
 }
 
 System::Void MainWindow::displayMeme(){
-	if (!currentMeme->sourceImagePath->Equals("")){
-		currentMeme->generateMeme();
-		pictureDisplay->Image = currentMeme->meme;
-	}
+	currentMeme->generateMeme();
+	pictureDisplay->Image = currentMeme->meme;
+	
 
 }
 
@@ -106,3 +109,15 @@ System::Void MainWindow::chooseFontBoxChange(System::Object^ o, System::EventArg
 	currentMeme->selectedFont = (String^)chooseFontBox->Text;
 	displayMeme();
 }	
+
+System::Void MainWindow::forceUppercase_CheckedChanged(System::Object^  sender, System::EventArgs^  e){
+	if (forceUppercase->Checked){
+		topCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
+		bottomCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
+		captionTextChanged( sender, e);
+	}
+	else{
+		topCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Normal;
+		bottomCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Normal;
+	}
+}

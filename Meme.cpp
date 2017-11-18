@@ -11,38 +11,78 @@ System::Void Meme::generateMeme(){
 
 	int fontSize1, fontSize2;
 
-	fontSize1 = meme->Height*0.15; 	fontSize2 = meme->Height*0.15;
-
-	System::Drawing::Font^ font = gcnew System::Drawing::Font(selectedFont, fontSize1); //font size
-
-	SizeF capSize = gr->MeasureString(topCaption, font); //size in pixels
-
-	while (meme->Width < capSize.Width || meme->Height*0.3 < capSize.Height){
-		fontSize1--;
-		font = gcnew System::Drawing::Font(selectedFont, fontSize1);
-		capSize = gr->MeasureString(topCaption, font);
-	}
+	fontSize1 = meme->Height*0.15; 	
+	fontSize2 = meme->Height*0.15;
 
 	StringFormat^ strFormat = gcnew StringFormat();
 	strFormat->Alignment = StringAlignment::Center;
 	PointF point;
+	SizeF capSize;
+	SolidBrush^ textBrush = gcnew SolidBrush(textColor)	;
+
 	point.X = meme->Width / 2.0;
 	point.Y = 0;
-	Brush^ brush = Brushes::White;
 
-	gr->DrawString(topCaption, font, brush, point, strFormat);
+	System::Drawing::Font^ font = gcnew System::Drawing::Font(selectedFont, fontSize1, FontStyle::Bold); //font size
 
-	font = gcnew System::Drawing::Font("Impact", fontSize2);
+	if (!topCaption->Equals("")){
+		capSize = gr->MeasureString(topCaption, font); //size in pixels
 
-	capSize = gr->MeasureString(bottomCaption, font);
+		while (meme->Width*0.95 < capSize.Width || meme->Height*0.3 < capSize.Height){
+			fontSize1--;
+			font = gcnew System::Drawing::Font(selectedFont, fontSize1);
+			capSize = gr->MeasureString(topCaption, font);
+		}
 
-	while (meme->Width < capSize.Width || meme->Height*0.3 < capSize.Height){
-		fontSize2--;
-		font = gcnew System::Drawing::Font(selectedFont, fontSize2);
-		capSize = gr->MeasureString(bottomCaption, font);
+		
+		Drawing2D::GraphicsPath^ p = gcnew Drawing2D::GraphicsPath();
+
+		Pen^ pen = gcnew Pen(strokeColor, 0.06*gr->DpiY*fontSize1 / 72);
+		gr->TextRenderingHint = Text::TextRenderingHint::AntiAlias;
+		//gr->DrawString(topCaption, font, brush, point, strFormat);
+
+		p->AddString(
+			topCaption,
+			gcnew FontFamily(selectedFont),
+			(int)FontStyle::Regular,
+			(float)(gr->DpiY*fontSize1 / 72),
+			point,
+			strFormat);
+
+		gr->DrawPath(pen, p);
+		gr->FillPath(textBrush, p);
 	}
 
-	point.Y = meme->Height - capSize.Height; //bottom starting position
+	if (!bottomCaption->Equals("")){
+		font = gcnew System::Drawing::Font(selectedFont, fontSize2);
 
-	gr->DrawString(bottomCaption, font, brush, point, strFormat);
+		capSize = gr->MeasureString(bottomCaption, font);
+
+		while (meme->Width - 5 < capSize.Width || meme->Height*0.3 < capSize.Height){
+			fontSize2--;
+			font = gcnew System::Drawing::Font(selectedFont, fontSize2);
+			capSize = gr->MeasureString(bottomCaption, font);
+		}
+
+		point.Y = meme->Height - capSize.Height; //bottom starting position
+
+		Drawing2D::GraphicsPath^ p = gcnew Drawing2D::GraphicsPath();
+
+		Pen^ pen = gcnew Pen(strokeColor, 0.06*gr->DpiY*fontSize2 / 72);
+		gr->TextRenderingHint = Text::TextRenderingHint::AntiAlias;
+		//gr->DrawString(topCaption, font, brush, point, strFormat);
+
+		p->AddString(
+			bottomCaption,
+			gcnew FontFamily(selectedFont),
+			(int)FontStyle::Regular,
+			(float)(gr->DpiY*fontSize2 / 72),
+			point,
+			strFormat);
+
+		gr->DrawPath(pen, p);
+		gr->FillPath(textBrush, p);
+	}
+
+	
 }
