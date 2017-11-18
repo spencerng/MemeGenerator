@@ -6,6 +6,7 @@ public:
 	System::String^ topCaption;
 	System::String^ bottomCaption;
 	System::String^ sourceImagePath;
+	System::String^ selectedFont = "Impact";
 
 
 	System::Drawing::Image^ sourceImage;

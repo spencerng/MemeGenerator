@@ -33,9 +33,11 @@ private:
 	System::Windows::Forms::Label^  label3;
 	System::Windows::Forms::PictureBox^  pictureBox2;
 	System::Windows::Forms::TextBox^  bottomCaptionTextBox;
-	System::Windows::Forms::FontDialog^  fontDialog1;
-	System::Windows::Forms::Button^  chooseFontButton;
-	Meme^ currentMeme;
+
+
+private: System::Windows::Forms::ComboBox^  chooseFontBox;
+
+		 Meme^ currentMeme;
 	System::Void displayMeme();
 	
 
@@ -45,9 +47,12 @@ private:
 
 	System::Void saveImageButton_Click(System::Object^  sender, System::EventArgs^  e);
 
-	System::Void chooseFontButton_Click(System::Object^  sender, System::EventArgs^  e);
+	
+
 	
 	System::Void MainWindow::Meme_Load(System::Object^, System::EventArgs^);
+
+	System::Void chooseFontBoxChange(System::Object^, System::EventArgs^);
 
 
 	System::ComponentModel::Container ^components;
@@ -74,8 +79,7 @@ private:
 		this->label2 = (gcnew System::Windows::Forms::Label());
 		this->label3 = (gcnew System::Windows::Forms::Label());
 		this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-		this->fontDialog1 = (gcnew System::Windows::Forms::FontDialog());
-		this->chooseFontButton = (gcnew System::Windows::Forms::Button());
+		this->chooseFontBox = (gcnew System::Windows::Forms::ComboBox());
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureDisplay))->BeginInit();
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -105,6 +109,7 @@ private:
 		// 
 		// sourceFileChooseButton
 		// 
+		this->sourceFileChooseButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 		this->sourceFileChooseButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 			System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 		this->sourceFileChooseButton->Location = System::Drawing::Point(729, 21);
@@ -128,6 +133,7 @@ private:
 		// 
 		// topCaptionTextBox
 		// 
+		this->topCaptionTextBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 		this->topCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
 		this->topCaptionTextBox->Enabled = false;
 		this->topCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -141,6 +147,7 @@ private:
 		// 
 		// bottomCaptionTextBox
 		// 
+		this->bottomCaptionTextBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 		this->bottomCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Upper;
 		this->bottomCaptionTextBox->Enabled = false;
 		this->bottomCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
@@ -150,7 +157,6 @@ private:
 		this->bottomCaptionTextBox->Name = L"bottomCaptionTextBox";
 		this->bottomCaptionTextBox->Size = System::Drawing::Size(375, 69);
 		this->bottomCaptionTextBox->TabIndex = 8;
-		this->bottomCaptionTextBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 		this->bottomCaptionTextBox->TextChanged += gcnew System::EventHandler(this, &MainWindow::captionTextChanged);
 		// 
 		// label1
@@ -167,6 +173,7 @@ private:
 		// saveImageButton
 		// 
 		this->saveImageButton->Enabled = false;
+		this->saveImageButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 		this->saveImageButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
 		this->saveImageButton->Location = System::Drawing::Point(729, 461);
@@ -179,6 +186,7 @@ private:
 		// 
 		// button3
 		// 
+		this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 		this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
 		this->button3->Location = System::Drawing::Point(934, 461);
@@ -241,17 +249,19 @@ private:
 		this->pictureBox2->TabIndex = 14;
 		this->pictureBox2->TabStop = false;
 		// 
-		// chooseFontButton
+		// chooseFontBox
 		// 
-		this->chooseFontButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-		this->chooseFontButton->Location = System::Drawing::Point(729, 384);
-		this->chooseFontButton->Name = L"chooseFontButton";
-		this->chooseFontButton->Size = System::Drawing::Size(170, 43);
-		this->chooseFontButton->TabIndex = 16;
-		this->chooseFontButton->Text = L"Choose Font";
-		this->chooseFontButton->UseVisualStyleBackColor = true;
-		this->chooseFontButton->Click += gcnew System::EventHandler(this, &MainWindow::chooseFontButton_Click);
+		this->chooseFontBox->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+		this->chooseFontBox->Enabled = false;
+		this->chooseFontBox->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+		this->chooseFontBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+		this->chooseFontBox->FormattingEnabled = true;
+		this->chooseFontBox->Location = System::Drawing::Point(729, 388);
+		this->chooseFontBox->Name = L"chooseFontBox";
+		this->chooseFontBox->Size = System::Drawing::Size(375, 28);
+		this->chooseFontBox->TabIndex = 17;
+		this->chooseFontBox->SelectedIndexChanged += gcnew System::EventHandler(this, &MainWindow::chooseFontBoxChange);
+		this->chooseFontBox->SelectedValueChanged += gcnew System::EventHandler(this, &MainWindow::chooseFontBoxChange);
 		// 
 		// MainWindow
 		// 
@@ -259,7 +269,7 @@ private:
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 		this->AutoSize = true;
 		this->ClientSize = System::Drawing::Size(1116, 529);
-		this->Controls->Add(this->chooseFontButton);
+		this->Controls->Add(this->chooseFontBox);
 		this->Controls->Add(this->label3);
 		this->Controls->Add(this->pictureBox2);
 		this->Controls->Add(this->label2);
@@ -275,6 +285,7 @@ private:
 		this->Controls->Add(this->pictureDisplay);
 		this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 		this->Margin = System::Windows::Forms::Padding(2);
+		this->MaximizeBox = false;
 		this->Name = L"MainWindow";
 		this->Text = L"Meme Generator";
 		this->Load += gcnew System::EventHandler(this, &MainWindow::Meme_Load);

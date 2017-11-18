@@ -1,15 +1,21 @@
-﻿Build started 11/17/2017 12:52:17 PM.
-     1>Project "C:\Users\Adrian\Documents\GitHub\MemeGenerator\MemeGenerator.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11/17/2017 8:14:40 PM.
+     1>Project "C:\Users\sng\Documents\GitHub\MemeGenerator\MemeGenerator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib MainWindow.cpp
-         MainWindow.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll" /analyze- /errorReport:prompt /clr:nostdlib Meme.cpp
+         Meme.cpp
+     1>Meme.cpp(14): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>Meme.cpp(16): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Meme.cpp(22): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Meme.cpp(29): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>Meme.cpp(35): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Meme.cpp(41): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Adrian\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /ASSEMBLYRESOURCE:"Debug\Meme Generator.MainWindow.resources" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Adrian\Documents\GitHub\MemeGenerator\Debug\Meme Generator.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\MainWindow.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\sng\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /ASSEMBLYRESOURCE:"Debug\Meme Generator.MainWindow.resources" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\sng\Documents\GitHub\MemeGenerator\Debug\Meme Generator.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\MainWindow.obj
          Debug\Meme.obj
          "Debug\.NETFramework,Version=v4.6.1.AssemblyAttributes.obj"
-         MemeGenerator.vcxproj -> C:\Users\Adrian\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe
-     1>Done Building Project "C:\Users\Adrian\Documents\GitHub\MemeGenerator\MemeGenerator.vcxproj" (Build target(s)).
+         MemeGenerator.vcxproj -> C:\Users\sng\Documents\GitHub\MemeGenerator\Debug\Meme Generator.exe
+     1>Done Building Project "C:\Users\sng\Documents\GitHub\MemeGenerator\MemeGenerator.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.51
+Time Elapsed 00:00:01.67
