@@ -24,6 +24,7 @@ System::Void Meme::generateMeme(){
 	point.Y = 0;
 
 	System::Drawing::Font^ font = gcnew System::Drawing::Font(selectedFont, fontSize1, FontStyle::Bold); //font size
+	gr->TextRenderingHint = Text::TextRenderingHint::AntiAlias;
 
 	if (!topCaption->Equals("")){
 		capSize = gr->MeasureString(topCaption, font); //size in pixels
@@ -38,7 +39,7 @@ System::Void Meme::generateMeme(){
 		Drawing2D::GraphicsPath^ p = gcnew Drawing2D::GraphicsPath();
 
 		Pen^ pen = gcnew Pen(strokeColor, 0.06*gr->DpiY*fontSize1 / 72);
-		gr->TextRenderingHint = Text::TextRenderingHint::AntiAlias;
+		
 		//gr->DrawString(topCaption, font, brush, point, strFormat);
 
 		p->AddString(

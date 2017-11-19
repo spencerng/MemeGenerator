@@ -38,6 +38,7 @@ private: System::Windows::Forms::PictureBox^  textColorBox;
 	System::Void selectUrlButton_Click(System::Object^  sender, System::EventArgs^  e);
 	System::Void textColorBox_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void strokeColorBox_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void publishImgurButton_Click(System::Object^  sender, System::EventArgs^  e);
 
 
 	System::Windows::Forms::TextBox^  bottomCaptionTextBox;
@@ -213,6 +214,7 @@ private: System::Windows::Forms::Button^  selectUrlButton;
 		this->publishImgurButton->TabIndex = 11;
 		this->publishImgurButton->Text = L"Publish to Imgur";
 		this->publishImgurButton->UseVisualStyleBackColor = true;
+		this->publishImgurButton->Click += gcnew System::EventHandler(this, &MainWindow::publishImgurButton_Click);
 		// 
 		// openFileDialog
 		// 

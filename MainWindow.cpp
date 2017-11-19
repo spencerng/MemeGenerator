@@ -1,6 +1,9 @@
 #include "MainWindow.h"
 #include "UrlPrompt.h"
 #include<array>
+#include<string>
+
+#include <msclr\marshal_cppstd.h>
 
 [STAThread]
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow) {
@@ -70,7 +73,7 @@ System::Void MainWindow::sourceFileChooseButton_Click(System::Object^  sender, S
 			saveImageButton->Enabled = true;
 			chooseFontBox->Enabled = true;
 			forceUppercase->Enabled = true;
-			
+			publishImgurButton->Enabled = true;
 			
 			currentMeme->sourceImagePath = openFileDialog->FileName;
 			currentMeme->sourceImage =  Image::FromFile(currentMeme->sourceImagePath);
@@ -127,27 +130,30 @@ System::Void MainWindow::selectUrlButton_Click(System::Object^  sender, System::
 	try{
 		UrlPrompt^ urlPrompt = gcnew UrlPrompt();
 		urlPrompt->ShowDialog();
-		pictureDisplay->Load(urlPrompt->urlTextBox->Text->ToString());
+
+		if (!urlPrompt->urlTextBox->Text->ToString()->Equals("")){
+			pictureDisplay->Load(urlPrompt->urlTextBox->Text->ToString());
 
 
-		sourceFileLabel->Text = urlPrompt->urlTextBox->Text->ToString();
+			sourceFileLabel->Text = urlPrompt->urlTextBox->Text->ToString();
 
-		topCaptionTextBox->Enabled = true;
-		bottomCaptionTextBox->Enabled = true;
-		pictureDisplay->BorderStyle = BorderStyle::None;
-		saveImageButton->Enabled = true;
-		chooseFontBox->Enabled = true;
-		forceUppercase->Enabled = true;
+			topCaptionTextBox->Enabled = true;
+			bottomCaptionTextBox->Enabled = true;
+			pictureDisplay->BorderStyle = BorderStyle::None;
+			saveImageButton->Enabled = true;
+			chooseFontBox->Enabled = true;
+			forceUppercase->Enabled = true;
+			publishImgurButton->Enabled = true;
 
+			currentMeme->sourceImagePath = urlPrompt->urlTextBox->Text->ToString();
+			currentMeme->sourceImage = pictureDisplay->Image;
 
-		currentMeme->sourceImagePath = urlPrompt->urlTextBox->Text->ToString();
-		currentMeme->sourceImage = pictureDisplay->Image;
-		
-		displayMeme();
+			displayMeme();
+		}
 	}
 	catch (Exception^ e){
 		MessageBox::Show("Invalid image URL", "Error");
-		MessageBox::Show(e->ToString());
+		//MessageBox::Show(e->ToString());
 	}
 	
 }
@@ -166,4 +172,26 @@ System::Void MainWindow::strokeColorBox_Click(System::Object^  sender, System::E
 		strokeColorBox->BackColor = colorDialog1->Color;
 		displayMeme();
 	}
+}
+System::Void MainWindow::publishImgurButton_Click(System::Object^  sender, System::EventArgs^  e){
+	System::Net::Http::HttpRequestMessage^ hrm = gcnew System::Net::Http::HttpRequestMessage();
+	hrm->Method = System::Net::Http::HttpMethod::Post;
+	hrm->RequestUri = gcnew System::Uri("https://api.imgur.com/3/image");
+	hrm->Headers->Add("authorization", "Client-ID cc076a16fed6cd3");
+	System::IO::MemoryStream^ stream = gcnew System::IO::MemoryStream();
+	pictureDisplay->Image->Save(stream, System::Drawing::Imaging::ImageFormat::Jpeg);
+	stream->Position = 0;
+	System::Net::Http::HttpContent^ httpContent = gcnew System::Net::Http::StreamContent(stream);
+	hrm->Content = httpContent;
+	System::Net::Http::HttpClient^ httpClient = gcnew System::Net::Http::HttpClient();
+	msclr::interop::marshal_context context;
+	std::string stdString = context.marshal_as<std::string>(httpClient->SendAsync(hrm)->Result->Content->ReadAsStringAsync()->Result);
+	string id = "";
+	for (int i = stdString.find("id\":\"") + 5; i < stdString.find("id\":\"") + 12; i++)
+		id += stdString[i];
+	string message = "Image uploaded to imgur.com/" + id + " (link copied to clipboard)";
+	System::Windows::Forms::Clipboard::SetText(gcnew String(("https://imgur.com/" + id).c_str()));
+	MessageBox::Show(gcnew String(message.c_str()), "Successful upload");
+
+
 }

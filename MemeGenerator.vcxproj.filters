@@ -34,6 +34,9 @@
     <EmbeddedResource Include="MainWindow.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="UrlPrompt.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainWindow.cpp">
