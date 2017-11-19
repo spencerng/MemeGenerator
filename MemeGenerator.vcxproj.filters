@@ -26,6 +26,9 @@
     <ClInclude Include="Meme.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UrlPrompt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainWindow.resx">

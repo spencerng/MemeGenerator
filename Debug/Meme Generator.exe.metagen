@@ -1,4 +1,5 @@
   Meme Generator.MainWindow.resources - Embedded, ContainedInManifestFile, 
+  Meme Generator.UrlPrompt.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly Meme Generator, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
 	hash=SHA1, flags=PublicKey
@@ -23,3 +24,8 @@ Assembly WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856a
 Class MainWindow: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class UrlPrompt: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Windows.Forms.TextBox urlTextBox : Public

@@ -34,7 +34,10 @@ private: System::Windows::Forms::PictureBox^  textColorBox;
 
 	System::Windows::Forms::Label^  label2;
 	System::Windows::Forms::Label^  label3;
-private: System::Windows::Forms::PictureBox^  strokeColorBox;
+	System::Windows::Forms::PictureBox^  strokeColorBox;
+	System::Void selectUrlButton_Click(System::Object^  sender, System::EventArgs^  e);
+	System::Void textColorBox_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void strokeColorBox_Click(System::Object^  sender, System::EventArgs^  e);
 
 
 	System::Windows::Forms::TextBox^  bottomCaptionTextBox;
@@ -43,6 +46,7 @@ private: System::Windows::Forms::PictureBox^  strokeColorBox;
 private: System::Windows::Forms::ComboBox^  chooseFontBox;
 private: System::Windows::Forms::Label^  label4;
 private: System::Windows::Forms::CheckBox^  forceUppercase;
+private: System::Windows::Forms::Button^  selectUrlButton;
 
 
 		 Meme^ currentMeme;
@@ -92,6 +96,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->chooseFontBox = (gcnew System::Windows::Forms::ComboBox());
 		this->label4 = (gcnew System::Windows::Forms::Label());
 		this->forceUppercase = (gcnew System::Windows::Forms::CheckBox());
+		this->selectUrlButton = (gcnew System::Windows::Forms::Button());
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureDisplay))->BeginInit();
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textColorBox))->BeginInit();
 		(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->strokeColorBox))->BeginInit();
@@ -102,7 +107,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->pictureDisplay->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 		this->pictureDisplay->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 		this->pictureDisplay->ImageLocation = L"";
-		this->pictureDisplay->Location = System::Drawing::Point(22, 19);
+		this->pictureDisplay->Location = System::Drawing::Point(17, 16);
 		this->pictureDisplay->Margin = System::Windows::Forms::Padding(2);
 		this->pictureDisplay->Name = L"pictureDisplay";
 		this->pictureDisplay->Size = System::Drawing::Size(694, 499);
@@ -114,7 +119,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		// 
 		this->sourceFileLabel->AutoSize = true;
 		this->sourceFileLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10));
-		this->sourceFileLabel->Location = System::Drawing::Point(905, 32);
+		this->sourceFileLabel->Location = System::Drawing::Point(726, 81);
 		this->sourceFileLabel->Name = L"sourceFileLabel";
 		this->sourceFileLabel->Size = System::Drawing::Size(0, 17);
 		this->sourceFileLabel->TabIndex = 3;
@@ -126,9 +131,9 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 			System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 		this->sourceFileChooseButton->Location = System::Drawing::Point(729, 21);
 		this->sourceFileChooseButton->Name = L"sourceFileChooseButton";
-		this->sourceFileChooseButton->Size = System::Drawing::Size(160, 43);
+		this->sourceFileChooseButton->Size = System::Drawing::Size(160, 41);
 		this->sourceFileChooseButton->TabIndex = 4;
-		this->sourceFileChooseButton->Text = L"Choose Source File";
+		this->sourceFileChooseButton->Text = L"Select Source File";
 		this->sourceFileChooseButton->UseVisualStyleBackColor = true;
 		this->sourceFileChooseButton->Click += gcnew System::EventHandler(this, &MainWindow::sourceFileChooseButton_Click);
 		// 
@@ -137,7 +142,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->topTextLabel->AutoSize = true;
 		this->topTextLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->topTextLabel->Location = System::Drawing::Point(725, 145);
+		this->topTextLabel->Location = System::Drawing::Point(725, 188);
 		this->topTextLabel->Name = L"topTextLabel";
 		this->topTextLabel->Size = System::Drawing::Size(95, 20);
 		this->topTextLabel->TabIndex = 5;
@@ -150,7 +155,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->topCaptionTextBox->Enabled = false;
 		this->topCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->topCaptionTextBox->Location = System::Drawing::Point(729, 168);
+		this->topCaptionTextBox->Location = System::Drawing::Point(729, 211);
 		this->topCaptionTextBox->Multiline = true;
 		this->topCaptionTextBox->Name = L"topCaptionTextBox";
 		this->topCaptionTextBox->Size = System::Drawing::Size(375, 69);
@@ -164,7 +169,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->bottomCaptionTextBox->Enabled = false;
 		this->bottomCaptionTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
 			System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-		this->bottomCaptionTextBox->Location = System::Drawing::Point(729, 278);
+		this->bottomCaptionTextBox->Location = System::Drawing::Point(729, 311);
 		this->bottomCaptionTextBox->Multiline = true;
 		this->bottomCaptionTextBox->Name = L"bottomCaptionTextBox";
 		this->bottomCaptionTextBox->Size = System::Drawing::Size(375, 69);
@@ -176,7 +181,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->label1->AutoSize = true;
 		this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label1->Location = System::Drawing::Point(725, 255);
+		this->label1->Location = System::Drawing::Point(725, 288);
 		this->label1->Name = L"label1";
 		this->label1->Size = System::Drawing::Size(120, 20);
 		this->label1->TabIndex = 7;
@@ -188,7 +193,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->saveImageButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 		this->saveImageButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->saveImageButton->Location = System::Drawing::Point(729, 461);
+		this->saveImageButton->Location = System::Drawing::Point(729, 468);
 		this->saveImageButton->Name = L"saveImageButton";
 		this->saveImageButton->Size = System::Drawing::Size(170, 43);
 		this->saveImageButton->TabIndex = 10;
@@ -202,7 +207,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->publishImgurButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 		this->publishImgurButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->publishImgurButton->Location = System::Drawing::Point(934, 461);
+		this->publishImgurButton->Location = System::Drawing::Point(934, 469);
 		this->publishImgurButton->Name = L"publishImgurButton";
 		this->publishImgurButton->Size = System::Drawing::Size(170, 43);
 		this->publishImgurButton->TabIndex = 11;
@@ -226,18 +231,20 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		// 
 		this->textColorBox->BackColor = System::Drawing::Color::White;
 		this->textColorBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-		this->textColorBox->Location = System::Drawing::Point(843, 401);
+		this->textColorBox->Cursor = System::Windows::Forms::Cursors::Hand;
+		this->textColorBox->Location = System::Drawing::Point(843, 423);
 		this->textColorBox->Name = L"textColorBox";
 		this->textColorBox->Size = System::Drawing::Size(25, 25);
 		this->textColorBox->TabIndex = 12;
 		this->textColorBox->TabStop = false;
+		this->textColorBox->Click += gcnew System::EventHandler(this, &MainWindow::textColorBox_Click);
 		// 
 		// label2
 		// 
 		this->label2->AutoSize = true;
 		this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label2->Location = System::Drawing::Point(740, 404);
+		this->label2->Location = System::Drawing::Point(740, 425);
 		this->label2->Name = L"label2";
 		this->label2->Size = System::Drawing::Size(80, 20);
 		this->label2->TabIndex = 13;
@@ -248,7 +255,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->label3->AutoSize = true;
 		this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label3->Location = System::Drawing::Point(911, 403);
+		this->label3->Location = System::Drawing::Point(911, 420);
 		this->label3->Name = L"label3";
 		this->label3->Size = System::Drawing::Size(97, 20);
 		this->label3->TabIndex = 15;
@@ -257,12 +264,14 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		// strokeColorBox
 		// 
 		this->strokeColorBox->BackColor = System::Drawing::Color::Black;
-		this->strokeColorBox->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-		this->strokeColorBox->Location = System::Drawing::Point(1022, 400);
+		this->strokeColorBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		this->strokeColorBox->Cursor = System::Windows::Forms::Cursors::Hand;
+		this->strokeColorBox->Location = System::Drawing::Point(1022, 421);
 		this->strokeColorBox->Name = L"strokeColorBox";
 		this->strokeColorBox->Size = System::Drawing::Size(25, 25);
 		this->strokeColorBox->TabIndex = 14;
 		this->strokeColorBox->TabStop = false;
+		this->strokeColorBox->Click += gcnew System::EventHandler(this, &MainWindow::strokeColorBox_Click);
 		// 
 		// chooseFontBox
 		// 
@@ -271,7 +280,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->chooseFontBox->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 		this->chooseFontBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
 		this->chooseFontBox->FormattingEnabled = true;
-		this->chooseFontBox->Location = System::Drawing::Point(729, 103);
+		this->chooseFontBox->Location = System::Drawing::Point(729, 149);
 		this->chooseFontBox->Name = L"chooseFontBox";
 		this->chooseFontBox->Size = System::Drawing::Size(375, 28);
 		this->chooseFontBox->TabIndex = 17;
@@ -283,7 +292,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->label4->AutoSize = true;
 		this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		this->label4->Location = System::Drawing::Point(725, 74);
+		this->label4->Location = System::Drawing::Point(725, 120);
 		this->label4->Name = L"label4";
 		this->label4->Size = System::Drawing::Size(74, 20);
 		this->label4->TabIndex = 18;
@@ -298,7 +307,7 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->forceUppercase->FlatAppearance->BorderSize = 10;
 		this->forceUppercase->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 		this->forceUppercase->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-		this->forceUppercase->Location = System::Drawing::Point(729, 357);
+		this->forceUppercase->Location = System::Drawing::Point(729, 386);
 		this->forceUppercase->Name = L"forceUppercase";
 		this->forceUppercase->Size = System::Drawing::Size(148, 24);
 		this->forceUppercase->TabIndex = 19;
@@ -306,12 +315,25 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 		this->forceUppercase->UseVisualStyleBackColor = true;
 		this->forceUppercase->CheckedChanged += gcnew System::EventHandler(this, &MainWindow::forceUppercase_CheckedChanged);
 		// 
+		// selectUrlButton
+		// 
+		this->selectUrlButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+		this->selectUrlButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(0)));
+		this->selectUrlButton->Location = System::Drawing::Point(927, 21);
+		this->selectUrlButton->Name = L"selectUrlButton";
+		this->selectUrlButton->Size = System::Drawing::Size(160, 41);
+		this->selectUrlButton->TabIndex = 20;
+		this->selectUrlButton->Text = L"Select Source URL";
+		this->selectUrlButton->UseVisualStyleBackColor = true;
+		this->selectUrlButton->Click += gcnew System::EventHandler(this, &MainWindow::selectUrlButton_Click);
+		// 
 		// MainWindow
 		// 
 		this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 		this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-		this->AutoSize = true;
 		this->ClientSize = System::Drawing::Size(1116, 529);
+		this->Controls->Add(this->selectUrlButton);
 		this->Controls->Add(this->forceUppercase);
 		this->Controls->Add(this->label4);
 		this->Controls->Add(this->chooseFontBox);
@@ -342,4 +364,6 @@ private: System::Windows::Forms::CheckBox^  forceUppercase;
 
 	}
 #pragma endregion
+	
+
 };

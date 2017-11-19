@@ -92,6 +92,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Meme.h" />
+    <ClInclude Include="UrlPrompt.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="peepe_Ven_icon.ico" />
@@ -99,6 +102,9 @@
   <ItemGroup>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UrlPrompt.resx">
+      <DependentUpon>UrlPrompt.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

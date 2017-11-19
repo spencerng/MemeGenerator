@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "UrlPrompt.h"
 #include<array>
 
 [STAThread]
@@ -35,7 +36,7 @@ System::Void MainWindow::Meme_Load(System::Object^ obj, System::EventArgs^ args)
 	//	MessageBox::Show(e->ToString(), "Unknown Exception");
 	}
 
-	sourceFileChooseButton_Click(obj, args);
+	//sourceFileChooseButton_Click(obj, args);
 
 }
 
@@ -119,5 +120,50 @@ System::Void MainWindow::forceUppercase_CheckedChanged(System::Object^  sender, 
 	else{
 		topCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Normal;
 		bottomCaptionTextBox->CharacterCasing = System::Windows::Forms::CharacterCasing::Normal;
+	}
+}
+
+System::Void MainWindow::selectUrlButton_Click(System::Object^  sender, System::EventArgs^  e){
+	try{
+		UrlPrompt^ urlPrompt = gcnew UrlPrompt();
+		urlPrompt->ShowDialog();
+		pictureDisplay->Load(urlPrompt->urlTextBox->Text->ToString());
+
+
+		sourceFileLabel->Text = urlPrompt->urlTextBox->Text->ToString();
+
+		topCaptionTextBox->Enabled = true;
+		bottomCaptionTextBox->Enabled = true;
+		pictureDisplay->BorderStyle = BorderStyle::None;
+		saveImageButton->Enabled = true;
+		chooseFontBox->Enabled = true;
+		forceUppercase->Enabled = true;
+
+
+		currentMeme->sourceImagePath = urlPrompt->urlTextBox->Text->ToString();
+		currentMeme->sourceImage = pictureDisplay->Image;
+		
+		displayMeme();
+	}
+	catch (Exception^ e){
+		MessageBox::Show("Invalid image URL", "Error");
+		MessageBox::Show(e->ToString());
+	}
+	
+}
+
+System::Void MainWindow::textColorBox_Click(System::Object^  sender, System::EventArgs^  e){
+	if (colorDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK){
+		currentMeme->textColor = colorDialog1->Color;
+		textColorBox->BackColor = colorDialog1->Color;
+		displayMeme();
+	}
+}
+
+System::Void MainWindow::strokeColorBox_Click(System::Object^  sender, System::EventArgs^  e){
+	if (colorDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK){
+		currentMeme->strokeColor = colorDialog1->Color;
+		strokeColorBox->BackColor = colorDialog1->Color;
+		displayMeme();
 	}
 }

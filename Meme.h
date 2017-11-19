@@ -3,8 +3,8 @@ using namespace std;
 
 ref class Meme {
 public:
-	System::String^ topCaption;
-	System::String^ bottomCaption;
+	System::String^ topCaption = "";
+	System::String^ bottomCaption = "";
 	System::String^ sourceImagePath;
 	System::String^ selectedFont = "Impact";
 	System::Drawing::Color textColor = System::Drawing::Color::FromName("White");

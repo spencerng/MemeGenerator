@@ -5,7 +5,7 @@ using namespace System::Drawing;
 
 System::Void Meme::generateMeme(){
 
-	meme = Image::FromFile(sourceImagePath);
+	meme = (Image^)sourceImage->Clone();
 
 	Graphics^ gr = Graphics::FromImage(meme);
 
