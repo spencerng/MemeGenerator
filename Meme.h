@@ -14,7 +14,9 @@ public:
 	System::Drawing::Image^ sourceImage;
 	System::Drawing::Image^ meme;
 
-	System::Void generateMeme();
+	System::Void generate();
+	System::Void save(System::String^ path);
+	System::String^ publishToImgur();
 public:
 	
 

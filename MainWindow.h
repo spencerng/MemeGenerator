@@ -39,6 +39,7 @@ private: System::Windows::Forms::PictureBox^  textColorBox;
 	System::Void textColorBox_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void strokeColorBox_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void publishImgurButton_Click(System::Object^  sender, System::EventArgs^  e);
+		 System::Void enableControls();
 
 
 	System::Windows::Forms::TextBox^  bottomCaptionTextBox;
@@ -78,6 +79,7 @@ private: System::Windows::Forms::Button^  selectUrlButton;
 	/// the contents of this method with the code editor.
 	/// </summary>
 	void InitializeComponent(void) {
+		System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainWindow::typeid));
 		this->pictureDisplay = (gcnew System::Windows::Forms::PictureBox());
 		this->sourceFileLabel = (gcnew System::Windows::Forms::Label());
 		this->sourceFileChooseButton = (gcnew System::Windows::Forms::Button());
@@ -234,6 +236,7 @@ private: System::Windows::Forms::Button^  selectUrlButton;
 		this->textColorBox->BackColor = System::Drawing::Color::White;
 		this->textColorBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 		this->textColorBox->Cursor = System::Windows::Forms::Cursors::Hand;
+		this->textColorBox->Enabled = false;
 		this->textColorBox->Location = System::Drawing::Point(843, 423);
 		this->textColorBox->Name = L"textColorBox";
 		this->textColorBox->Size = System::Drawing::Size(25, 25);
@@ -268,6 +271,7 @@ private: System::Windows::Forms::Button^  selectUrlButton;
 		this->strokeColorBox->BackColor = System::Drawing::Color::Black;
 		this->strokeColorBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 		this->strokeColorBox->Cursor = System::Windows::Forms::Cursors::Hand;
+		this->strokeColorBox->Enabled = false;
 		this->strokeColorBox->Location = System::Drawing::Point(1022, 421);
 		this->strokeColorBox->Name = L"strokeColorBox";
 		this->strokeColorBox->Size = System::Drawing::Size(25, 25);
@@ -353,6 +357,7 @@ private: System::Windows::Forms::Button^  selectUrlButton;
 		this->Controls->Add(this->sourceFileLabel);
 		this->Controls->Add(this->pictureDisplay);
 		this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+		//this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"MAINICON")));
 		this->Margin = System::Windows::Forms::Padding(2);
 		this->MaximizeBox = false;
 		this->Name = L"MainWindow";

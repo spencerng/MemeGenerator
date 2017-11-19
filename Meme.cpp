@@ -3,7 +3,7 @@
 
 using namespace System::Drawing;
 
-System::Void Meme::generateMeme(){
+System::Void Meme::generate(){
 
 	meme = (Image^)sourceImage->Clone();
 
@@ -86,4 +86,23 @@ System::Void Meme::generateMeme(){
 	}
 
 	
+}
+
+System::Void Meme::save(System::String^ path){
+	meme->Save(path, Imaging::ImageFormat::Jpeg);
+}
+
+System::String^ Meme::publishToImgur(){
+	System::Net::Http::HttpRequestMessage^ hrm = gcnew System::Net::Http::HttpRequestMessage();
+	hrm->Method = System::Net::Http::HttpMethod::Post;
+	hrm->RequestUri = gcnew System::Uri("https://api.imgur.com/3/image");
+	hrm->Headers->Add("authorization", "Client-ID cc076a16fed6cd3");
+	System::IO::MemoryStream^ stream = gcnew System::IO::MemoryStream();
+	meme->Save(stream, System::Drawing::Imaging::ImageFormat::Jpeg);
+	stream->Position = 0;
+	System::Net::Http::HttpContent^ httpContent = gcnew System::Net::Http::StreamContent(stream);
+	hrm->Content = httpContent;
+	System::Net::Http::HttpClient^ httpClient = gcnew System::Net::Http::HttpClient();
+	
+	return httpClient->SendAsync(hrm)->Result->Content->ReadAsStringAsync()->Result;
 }

@@ -15,11 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="peepe_Ven_icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="MainWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,5 +40,20 @@
     <ClCompile Include="Meme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Meme Generator.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="pepeIcon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MainWindow.resources">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

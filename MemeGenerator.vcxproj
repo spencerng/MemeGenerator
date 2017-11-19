@@ -100,15 +100,21 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="peepe_Ven_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UrlPrompt.resx">
       <DependentUpon>UrlPrompt.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Meme Generator.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="pepeIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MainWindow.resources" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
