@@ -25,7 +25,7 @@ System::Void Meme::generate(){
 
 	System::Drawing::Font^ font = gcnew System::Drawing::Font(selectedFont, fontSize1, FontStyle::Bold); //font size
 	gr->TextRenderingHint = Text::TextRenderingHint::AntiAlias;
-
+	gr->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
 	if (!topCaption->Equals("")){
 		capSize = gr->MeasureString(topCaption, font); //size in pixels
 
