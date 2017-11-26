@@ -5,6 +5,8 @@
 
 #include <msclr\marshal_cppstd.h>
 
+#define VERSION 1.1
+
 [STAThread]
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow) {
 	
@@ -43,6 +45,11 @@ System::Void MainWindow::Meme_Load(System::Object^ obj, System::EventArgs^ args)
 	
 	//sourceFileChooseButton_Click(obj, args);
 
+	this->Text = "Meme Generator - Version " + VERSION;
+
+	topCaptionTextBox->WordWrap = false;
+	bottomCaptionTextBox->WordWrap = false;
+	
 }
 
 MainWindow::MainWindow(void) {
