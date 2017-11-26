@@ -14,12 +14,12 @@ Built in .NET and C++ by Spencer Ng, Adrian Wylie ([WileyA](http://github.com/wy
 
 ## Directions
 
-1. Select a source image
-  i. Open a downloaded image with "Select source file"
-  ii. Paste an image address from the internet with "Select source URL"
-2. Add top and bottom captions by typing into the text boxes
-3. Change typeface by selecting the dropdown bar
-4. Change text and stroke color by clicking on the colored boxes
-5. Export your meme
-  i. Save your meme as a JPEG locally with "Save image"
-  ii. Publish your meme online to Imgur with "Publish to Imgur." Once uploaded, the image's URL will be copied to your clipboard
+* Select a source image
+  * Open a downloaded image with "Select source file"
+  * Paste an image address from the internet with "Select source URL"
+* Add top and bottom captions by typing into the text boxes
+* Change typeface by selecting the dropdown bar
+* Change text and stroke color by clicking on the colored boxes
+* Export your meme
+  * Save your meme as a JPEG locally with "Save image"
+  * Publish your meme online to Imgur with "Publish to Imgur." Once uploaded, the image's URL will be copied to your clipboard
